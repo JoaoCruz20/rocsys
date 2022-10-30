@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {useQuery} from '@apollo/client';
 import {LOAD_DATA} from '../graphql/queries';
-import {Box, Button, Paper, TableRow, TableHead, TableContainer,TableCell, TableBody, Table} from '@mui/material';
+import {Box, Button, Paper, TableRow, TableHead, TableContainer,TableCell, TableBody, Table, Typography} from '@mui/material';
 
 const Container = styled.div`
 margin: 10%;
@@ -18,17 +18,16 @@ margin: 10%;
     useEffect(() => {
         setIsLoading(loading);
         if(data){
-            console.log(data)
-            setData(data)
+            setData(data?.device)
         } 
 
     }, [data, loading])
 
 
-    return (
-        
+    return (            
 <Container>
-<Box sx={{width:"100%", display:"flex", justifyContent:"center", flexDirection:"column" , borderRadius: "10px"}}>
+{ !isLoading  ? (  
+    <Box sx={{width:"100%", display:"flex", justifyContent:"center", flexDirection:"column" , borderRadius: "10px"}}>
         <TableContainer sx={{ border: "2px solid #5C9BEB"}} component={Paper}>
         <Table aria-label="a dense table">
           <TableHead>
@@ -42,25 +41,35 @@ margin: 10%;
               <TableCell>Remove</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>          
-             <TableRow>
+          <TableBody> 
+          <>
+         {postData?.map((value: any, index:any) => (              
+            <TableRow key={`row-${index}-${value?.id}`}>
                 <TableCell component="th" scope="row">
-                 Hello
+                 {value?.id}
                 </TableCell>
-                <TableCell>Hello</TableCell>
-                <TableCell>Hello</TableCell>
-                <TableCell>Hello</TableCell>
-                <TableCell>Hello</TableCell>
-                <TableCell>Hello</TableCell>
+                <TableCell>{value?.serial_number}</TableCell>
+                <TableCell>{value?.site?.name}</TableCell>
+                <TableCell>{value?.device_type?.model_number}</TableCell>
+                <TableCell>
+                    <Typography variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>Configurations</Typography> 
+                </TableCell>
+                <TableCell>
+                    <Typography variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>Operations</Typography>  
+                </TableCell>
                 <TableCell>
                     <Button variant="contained" style={{backgroundColor:"#3C9EFF"}}>Remove</Button>                    
                 </TableCell>
-              </TableRow>
-            
+            </TableRow>               
+          ))}
+          </>            
           </TableBody>
         </Table>
       </TableContainer>
       </Box>
+        ):(
+            <Typography variant="h2" component="div" style={{display:"flex", justifyContent:"center", color:"#3C9EFF", textDecoration:"underline"}} >Loading...</Typography>
+        )}
     </Container>
     );
   }
