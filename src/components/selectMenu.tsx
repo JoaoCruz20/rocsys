@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 /* eslint-disable array-callback-return */
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
@@ -6,10 +7,11 @@ import {LOAD_DATA} from '../graphql/queries';
 import {Box, Button, Paper, TableRow, TableHead, TableContainer,TableCell, TableBody, Table, Typography} from '@mui/material';
 
 const Container = styled.div`
-margin: 10%;
+margin: 5% 10% 0 10%;
 `;
 
  export const SelectMenu = () => {
+  const url = window.location.origin;
 
     const {loading, data} = useQuery(LOAD_DATA)
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -20,15 +22,14 @@ margin: 10%;
         if(data){
             setData(data?.device)
         } 
-
     }, [data, loading])
 
 
     return (            
 <Container>
 { !isLoading  ? (  
-    <Box sx={{width:"100%", display:"flex", justifyContent:"center", flexDirection:"column" , borderRadius: "10px"}}>
-        <TableContainer sx={{ border: "2px solid #5C9BEB"}} component={Paper}>
+    <Box sx={{width:"100%", display:"flex", justifyContent:"center", flexDirection:"column" , borderRadius: "5px"}}>
+        <TableContainer component={Paper}>
         <Table aria-label="a dense table">
           <TableHead>
             <TableRow>
@@ -52,10 +53,14 @@ margin: 10%;
                 <TableCell>{value?.site?.name}</TableCell>
                 <TableCell>{value?.device_type?.model_number}</TableCell>
                 <TableCell>
-                    <Typography variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>Configurations</Typography> 
+                  <Button href={url + '/configurations' + `/${value?.id}`}>
+                    <Typography variant="h6" component="div" style={{fontSize:"14px", fontWeight:"bold", color:"#3C9EFF", textDecoration:"underline"}}>Configurations</Typography> 
+                  </Button>
                 </TableCell>
                 <TableCell>
-                    <Typography variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>Operations</Typography>  
+                  <Button href={url + '/Operations' + `/${value?.id}`}>
+                    <Typography variant="h6" component="div" style={{fontSize:"14px", fontWeight:"bold",color:"#3C9EFF", textDecoration:"underline"}}>Operations</Typography>  
+                  </Button>
                 </TableCell>
                 <TableCell>
                     <Button variant="contained" style={{backgroundColor:"#3C9EFF"}}>Remove</Button>                    
