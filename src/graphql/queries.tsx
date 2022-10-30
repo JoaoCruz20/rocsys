@@ -14,3 +14,20 @@ query MyQuery {
   }
 
 `
+
+export const LOAD_DATA = gql`
+query MyQuery {
+  device {
+    id
+    serial_number
+    site {
+      name
+    }
+    device_type {
+      model_number
+    }
+  }
+}
+
+
+`
