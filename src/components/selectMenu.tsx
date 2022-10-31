@@ -27,43 +27,43 @@ margin: 5% 10% 0 10%;
 
     return (            
 <Container data-testid="container">
-{ !isLoading  ? (  
-    <Box sx={{width:"100%", display:"flex", justifyContent:"center", flexDirection:"column" , borderRadius: "5px"}}>
-        <TableContainer component={Paper}>
-        <Table aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Serial Number</TableCell>
-              <TableCell>Site</TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Configurations</TableCell>
-              <TableCell>Operations</TableCell>
-              <TableCell>Remove</TableCell>
+{!isLoading ? (  
+    <Box data-testid="box" sx={{width:"100%", display:"flex", justifyContent:"center", flexDirection:"column" , borderRadius: "5px"}}>
+        <TableContainer data-testid="table-container" component={Paper}>
+        <Table data-testid="table" aria-label="a dense table">
+          <TableHead data-testid="table-head">
+            <TableRow data-testid="table-row">
+              <TableCell data-testid="table-cell">ID</TableCell>
+              <TableCell data-testid="table-cell">Serial Number</TableCell>
+              <TableCell data-testid="table-cell">Site</TableCell>
+              <TableCell data-testid="table-cell">Type</TableCell>
+              <TableCell data-testid="table-cell">Configurations</TableCell>
+              <TableCell data-testid="table-cell">Operations</TableCell>
+              <TableCell data-testid="table-cell">Remove</TableCell>
             </TableRow>
           </TableHead>
           <TableBody> 
           <>
          {postData?.map((value: any, index:any) => (              
-            <TableRow key={`row-${index}-${value?.id}`}>
-                <TableCell component="th" scope="row">
+            <TableRow data-testid="table-row" key={`row-${index}-${value?.id}`}>
+                <TableCell data-testid="table-cell" component="th" scope="row">
                  {value?.id}
                 </TableCell>
-                <TableCell>{value?.serial_number}</TableCell>
-                <TableCell>{value?.site?.name}</TableCell>
-                <TableCell>{value?.device_type?.model_number}</TableCell>
-                <TableCell>
-                  <Button href={url + '/configurations' + `/${value?.id}`}>
-                    <Typography variant="h6" component="div" style={{fontSize:"14px", fontWeight:"bold", color:"#3C9EFF", textDecoration:"underline"}}>Configurations</Typography> 
+                <TableCell data-testid="table-cell">{value?.serial_number}</TableCell>
+                <TableCell data-testid="table-cell">{value?.site?.name}</TableCell>
+                <TableCell data-testid="table-cell">{value?.device_type?.model_number}</TableCell>
+                <TableCell data-testid="table-cell">
+                  <Button data-testid="table-button" href={url + '/configurations' + `/${value?.id}`}>
+                    <Typography data-testid="table-typography" variant="h6" component="div" style={{fontSize:"14px", fontWeight:"bold", color:"#3C9EFF", textDecoration:"underline"}}>Configurations</Typography> 
                   </Button>
                 </TableCell>
-                <TableCell>
-                  <Button href={url + '/Operations' + `/${value?.id}`}>
-                    <Typography variant="h6" component="div" style={{fontSize:"14px", fontWeight:"bold",color:"#3C9EFF", textDecoration:"underline"}}>Operations</Typography>  
+                <TableCell data-testid="table-cell">
+                  <Button data-testid="table-button" href={url + '/Operations' + `/${value?.id}`}>
+                    <Typography data-testid="table-typography" variant="h6" component="div" style={{fontSize:"14px", fontWeight:"bold",color:"#3C9EFF", textDecoration:"underline"}}>Operations</Typography>  
                   </Button>
                 </TableCell>
-                <TableCell>
-                    <Button variant="contained" style={{backgroundColor:"#3C9EFF"}}>Remove</Button>                    
+                <TableCell data-testid="table-cell">
+                    <Button data-testid="table-button" variant="contained" style={{backgroundColor:"#3C9EFF"}}>Remove</Button>                    
                 </TableCell>
             </TableRow>               
           ))}
@@ -73,7 +73,7 @@ margin: 5% 10% 0 10%;
       </TableContainer>
       </Box>
         ):(
-            <Typography variant="h2" component="div" style={{display:"flex", justifyContent:"center", color:"#3C9EFF", textDecoration:"underline"}} >Loading...</Typography>
+            <Typography data-testid="typography" variant="h2" component="div" style={{display:"flex", justifyContent:"center", color:"#3C9EFF", textDecoration:"underline"}} >Loading...</Typography>
         )}
     </Container>
     );
