@@ -13,8 +13,8 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Home />
+    <ApolloProvider data-testid='apollo-provider' client={client}>
+      <Home data-testid='homepage' />
     </ApolloProvider>
     )
 }

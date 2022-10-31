@@ -5,11 +5,7 @@ import React from 'react';
 
 
 describe('NavBar Component', () => {
-  const url=null;
-
-     it('Getting URL', () => {
-    expect(url).toBeInTheDocument();
-    });
+  const url= '';
 
     it('Rendering Parent-Box', () => {
       render(
