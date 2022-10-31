@@ -20,14 +20,14 @@ const Footer = () => {
 
 
     return (     
-        <Container>         
-            <Typography variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>
+        <Container data-testid="container">         
+            <Typography data-testid="typography-link" variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>
                 Link
               </Typography>
-              <Typography variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>
+              <Typography data-testid="typography-link" variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>
                 Link
               </Typography>
-              <Typography variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>
+              <Typography data-testid="typography-link" variant="h6" component="div" style={{marginLeft:"20px", color:"#3C9EFF", textDecoration:"underline"}}>
                 Link
               </Typography>       
         </Container>           
